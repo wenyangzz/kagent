@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grpc-kagent-tls
+spec:
+  ingressClassName: istio
+  tls:
+  - secretName: httpbin-credential
+  rules:
+  - host: kagent-default.example.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: grpc-kagent
+            port:
+              number: 80
+        path: /
+        pathType: Prefix

@@ -1,0 +1,8 @@
+wind_speed	numeric	{"min": 0.325604473, "max": 28.29973586}
+weather_temperature_celsius	numeric	{"min": -5.713217577, "max": 44.62394078}
+weather_relative_humidity	numeric	{"min": 3.15324092, "max": 101.870402}
+global_horizontal_radiation	numeric	{"min": 1.158924697, "max": 1539.433431}
+diffuse_horizontal_radiation	numeric	{"min": 0.342084, "max": 712.4493}
+wind_direction	numeric	{"min": 13.30446847, "max": 330.7176514}
+weather_daily_rainfall	numeric	{"min": 0, "max": 31.00001}
+target	numeric	{"min": -0.00013, "max": 6.06767}

@@ -1,0 +1,25 @@
+apiVersion: "security.istio.io/v1beta1"
+kind: "RequestAuthentication"
+metadata:
+  name: "kagent"
+spec:
+  selector:
+    matchLabels:
+      app: kagent
+  jwtRules:
+  - issuer: "testing@secure.istio.io"
+    forwardOriginalToken: true
+    jwks: '{ 
+      "keys":
+         [
+           {
+             "kty":"RSA",
+             "e":"AQAB",
+             "kid":"91027b30-ded1-4570-aa6a-03b7f877616b",
+             "n":"wFiLqMfWb4bf8GosOCx1LZF8ccu-eAmbE9kP352y3q_opAxbgs_p7xC9suJeofQnY24XcUaIzivIcAwk2IQ7rYLIXMnXk0f2ORpypTIKsqXinKJOnbG0AohoCdoGun8EZhd9SF7FpiKziomF-GKibzxPk5mZzRyT7FGZcdn6ABZaGtRuKLV2Yv1tystxs-3rpxBRgCwMibgrEFqLZDLWDJHw6SuR6svRUVGAYWl4cc5MOZ-cvBC_8uRqGYq_yyMKGsFj92_96QAuy2VS7Luvqo4t0oczqHzVGuRl9jdO0EkChfwkETBB74_faKWpVi8rPBiDP2F8o60OevvsSlrmEw"
+            }
+         ]
+      }'
+
+
+      

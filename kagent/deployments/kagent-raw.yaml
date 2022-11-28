@@ -1,0 +1,89 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kagent
+  labels:
+    app: kagent
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: kagent
+  namespace: kagent
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: kagent-kserve-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kserve-manager-role
+subjects:
+- kind: ServiceAccount
+  name: kagent
+  namespace: kagent
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grpc-kagent
+  namespace: kagent
+  labels:
+    app: kagent
+    service: kagent
+spec:
+  ports:
+  - name: grpc
+    port: 80
+    targetPort: 9000
+    protocol: TCP
+  selector:
+    app: kagent
+  type: ClusterIP 
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grpc-kagent
+  namespace: kagent
+spec:
+  ingressClassName: istio
+  rules:
+  - host: kagent-default.example.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: grpc-kagent
+            port:
+              number: 80
+        path: /
+        pathType: Prefix   
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grpc-kagent
+  namespace: kagent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kagent
+      version: v1
+  template:    
+    metadata:
+      labels:
+        app: kagent
+        version: v1
+    spec:
+      serviceAccountName: kagent
+      containers:
+      - image: docker.io/lw233/kagent
+        imagePullPolicy: Always
+        name: grpc-kagent
+        ports:
+        - containerPort: 9000
+          protocol: TCP
+          name: grpc

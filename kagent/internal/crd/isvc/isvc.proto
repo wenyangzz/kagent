@@ -1,0 +1,68 @@
+// Copyright 2015 gRPC authors.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+option go_package = "github.com/kagent/internal/crd/isvc";
+
+package isvc;
+
+// Interface exported by the server.
+service IsvcService {
+
+  rpc GetIsvc(GetIsvcRequest) returns (GetIsvcResponse) {}
+  rpc CreateIsvc(CreateIsvcRequest) returns (IsvcNull) {}
+  rpc DeleteIsvc(DeleteIsvcRequest) returns (IsvcNull) {}
+  rpc ListIsvc(IsvcNull) returns (ListIsvcResponse) {}
+
+}
+
+message GetIsvcRequest {
+  ModelSpec model_spec_get = 1;
+}
+
+message GetIsvcResponse {
+  IsvcSpec isvc_output = 1;
+}
+
+message CreateIsvcRequest {
+  ModelSpec model_spec_create = 1;
+}
+
+message DeleteIsvcRequest {
+  ModelSpec model_spec_delete = 1;
+}
+
+message ListIsvcResponse {
+  repeated IsvcSpec isvc_list = 1;
+}
+
+message ModelSpec {
+  string model_name = 1;
+  string model_version = 2;
+  bytes model_framework =3;
+  bytes model_content =4;
+  bytes model_preparation =5;
+}
+
+message IsvcSpec {
+  string isvc_name = 1;
+  string isvc_status =2;
+  string isvc_url =3;
+}
+
+message IsvcNull {
+}
+
+

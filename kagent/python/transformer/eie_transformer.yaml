@@ -1,0 +1,20 @@
+apiVersion: "serving.kserve.io/v1beta1"
+kind: "InferenceService"
+metadata:
+  name: "xgboost-transformer"
+spec:
+  transformer:
+    containers:
+    - image: chinhuang007/driver-transformer:latest
+      name: xgb-transformer-container
+      command:
+      - "python"
+      - "-m"
+      - "xgb_transformer"
+      args:
+      - --protocol
+      - http
+  predictor:
+    sklearn:
+      storageUri: "gs://kfserving-examples/models/feast/driver"
+          

@@ -1,0 +1,13 @@
+[{  
+   "Month": 3, 
+   "Day": 11, 
+   "Day_Of_Week": 7, 
+   "Hour": 0, 
+   "Current_Phase_Average": 0.0, 
+   "Weather_Temperature_Celsius": -0.649051584594039, 
+   "Weather_Relative_Humidity": -0.42259529794133405, 
+   "Global_Horizontal_Radiation": -0.7560591986879779, 
+   "Diffuse_Horizontal_Radiation": -0.5775273152399446, 
+   "Wind_Direction": 100.27136993408001, 
+   "Weather_Daily_Rainfall": 0.0
+ }]

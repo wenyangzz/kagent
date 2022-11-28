@@ -1,0 +1,11 @@
+Month	category
+Day	category
+Day_Of_Week	category
+Hour	category
+Current_Phase_Average	numeric
+Weather_Temperature_Celsius	numeric
+Weather_Relative_Humidity	numeric
+Global_Horizontal_Radiation	numeric
+Diffuse_Horizontal_Radiation	numeric
+Wind_Direction	numeric
+Weather_Daily_Rainfall	numeric

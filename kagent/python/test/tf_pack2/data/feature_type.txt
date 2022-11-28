@@ -1,0 +1,7 @@
+wind_speed	numeric
+weather_temperature_celsius	numeric
+weather_relative_humidity	numeric
+global_horizontal_radiation	numeric
+diffuse_horizontal_radiation	numeric
+wind_direction	numeric
+weather_daily_rainfall	numeric
