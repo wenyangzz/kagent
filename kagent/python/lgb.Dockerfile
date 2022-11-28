@@ -1,3 +1,4 @@
+FROM multiarch/alpine:aarch64-edge
 FROM python:3.9-slim
 
 COPY third_party third_party
