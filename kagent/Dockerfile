@@ -12,7 +12,7 @@ COPY cmd/    cmd/
 COPY internal/    internal/
 # Build
 ENV GOPROXY "https://goproxy.cn,direct"
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -a -o apiserver ./cmd/apiserver; 
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -a -o apiserver ./cmd/apiserver
     
 # Copy the kagent into a thin image
 #FROM gcr.io/distroless/static:nonroot
