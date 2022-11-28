@@ -12,14 +12,8 @@ COPY cmd/    cmd/
 COPY internal/    internal/
 # Build
 ENV GOPROXY "https://goproxy.cn,direct"
-RUN if [ "$(uname -m)" = "ppc64le" ]; then \
-        CGO_ENABLED=0 GOOS=linux GOARCH=ppc64le go build -a -o apiserver ./cmd/apiserver; \
-    elif [ "$(uname -m)" = "aarch64" ]; then \
-        CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -a -o apiserver ./cmd/apiserver; \
-    else \
-        CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -o apiserver ./cmd/apiserver; \
-    fi
-
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -a -o apiserver ./cmd/apiserver; 
+    
 # Copy the kagent into a thin image
 #FROM gcr.io/distroless/static:nonroot
 FROM golang:1.17
